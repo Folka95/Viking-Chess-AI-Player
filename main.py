@@ -115,9 +115,9 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tafl UI")
 
 CELL = (2 * X) / BOARD_SIZE
-ATTACKER_ICON_FILE = "attacker.png"
-DEFENDER_ICON_FILE = "defender.png"
-KING_ICON_FILE = "king.png"
+ATTACKER_ICON_FILE = "assets/attacker.png"
+DEFENDER_ICON_FILE = "assets/defender.png"
+KING_ICON_FILE = "assets/king.png"
 
 CELL_RADIUS = CELL//2 - 4
 
