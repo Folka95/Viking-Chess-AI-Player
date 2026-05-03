@@ -42,3 +42,89 @@ The attackers can win in the following cases:
 ## Turn Order
 - In Hnefatafl, the attacking player always moves first (one attacker per turn)
 - After that, the turn goes to the defender (one defender per turn), and so on
+
+# 🤖 AI Player (Alpha-Beta Algorithm)
+
+The game includes an AI agent that uses the **Minimax algorithm with Alpha-Beta pruning** to make optimal decisions.
+
+---
+
+## 🧠 Overview
+
+- The AI simulates future game states to choose the best possible move.
+- It assumes:
+  - The AI plays optimally
+  - The opponent also plays optimally
+- The algorithm explores a game tree of possible moves up to a certain depth.
+
+---
+
+## 🌳 Minimax Concept
+
+- The game is modeled as a tree:
+  - Each node represents a game state
+  - Each edge represents a possible move
+
+- Two types of players:
+  - **Maximizing player** → tries to maximize the score (AI)
+  - **Minimizing player** → tries to minimize the score (opponent)
+
+---
+
+## ✂️ Alpha-Beta Pruning
+
+Alpha-Beta pruning improves Minimax by **eliminating branches that will not affect the final decision**.
+
+- **Alpha (α):** Best value the maximizer can guarantee so far
+- **Beta (β):** Best value the minimizer can guarantee so far
+
+### Pruning Condition
+- If `β ≤ α`, the branch is pruned (ignored)
+
+This significantly reduces:
+- Number of explored nodes
+- Execution time
+
+---
+
+## ⚙️ Evaluation Function
+
+The AI evaluates board states using a heuristic function that considers:
+
+- Distance of the King to the nearest corner
+- Number of remaining defenders and attackers
+- King safety (surrounded sides)
+- Control of key positions (center, paths to corners)
+
+The evaluation returns:
+- Positive score → favorable for AI
+- Negative score → unfavorable for AI
+
+---
+
+## 🔄 Algorithm Flow
+
+1. Generate all valid moves
+2. Apply each move to create new states
+3. Recursively evaluate states using Minimax
+4. Apply Alpha-Beta pruning to skip unnecessary branches
+5. Select the move with the best evaluation score
+
+---
+
+## ⚡ Performance Notes
+
+- Alpha-Beta pruning greatly reduces computation compared to plain Minimax
+- Depth limit is used to control execution time
+- Move ordering can further improve pruning efficiency
+
+---
+
+## 🧩 Integration
+
+- The AI can play as:
+  - Attacker
+  - Defender
+- It is integrated with the game controller:
+  - Receives current board state
+  - Returns the best move
