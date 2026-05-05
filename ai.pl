@@ -245,7 +245,7 @@ make_move(Board, SR, SC, ER, EC, NewBoard) :-
     check_capturing(TempBoard2, ER, EC, NewBoard).
 
 % ====================
-% Alpha-Beta 
+% Alpha-Beta Score Evaluation & State transition
 % ====================
 number_of_pieces(Board, attacker, Count) :-
     findall(1, attacker_cell(Board, Row, Col), Pieces),
@@ -310,10 +310,6 @@ evaluation(Board, Score) :-
     defenders_evaluation(Board, DefendersScore),
     Score is AttackersScore - DefendersScore.
 
-% ====================
-% Alpha-Beta 
-% ====================
-
 next_state(Board, attacker, SR, SC, ER, EC, NewBoard) :-
     attacker_cell(Board, SR, SC),
     empty_cell(Board, ER, EC),
@@ -339,6 +335,10 @@ next_states(Board, defender, _Alpha, _Beta, NextStates) :-
         next_state(Board, defender, SR, SC, ER, EC, NewBoard),
         NextStates
     ).
+
+% ====================
+% Alpha-Beta Algorithm
+% ====================
 
 alpha_beta(Board, Depth, _, _, _, best(Score, none, none, none, none, Board)) :-
     ( Depth =< 0 ; terminal_state(Board, _) ),
